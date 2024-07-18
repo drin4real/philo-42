@@ -6,7 +6,7 @@
 /*   By: dbislimi <dbislimi@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:46:37 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/07/17 17:13:41 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:21:15 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	philos_init(char **av, t_program *pro)
 	while (++i < pro->num_of_philos)
 	{
 		pro->philos[i].id = i + 1;
+		pro->philos[i].eating = 0;
+		pro->philos[i].meals_eaten = 0;
 		pro->philos[i].dead = &pro->dead_flag;
 		pro->philos[i].num_of_philos = pro->num_of_philos;
 		pro->philos[i].time_to_die = die_eat_sleep[0];

@@ -2,7 +2,9 @@ PHILO_PATH = ./srcs/mandatory
 BONUS_PATH = ./srcs/bonus
 
 SRCS = ${addprefix ${PHILO_PATH}/, main.c \
-									philo_utils.c}
+									philo_utils.c \
+									philo_utils2.c \
+									routine_utils.c}
 # SRCS_B = ${addprefix ${BONUS_PATH}/,}
 
 OBJS = ${SRCS:.c=.o}
