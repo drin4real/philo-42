@@ -6,16 +6,16 @@
 /*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:37:05 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/18 17:50:47 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:56:03 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	ft_atol_philo(char *s)
+size_t	ft_atol_philo(char *s)
 {
 	int		i;
-	long	res;
+	size_t	res;
 	int		sign;
 	int		size;
 
@@ -50,5 +50,5 @@ void	parsing(t_table *table, char **av)
 	if (av[5])
 		table->nbr_limit_meal = ft_atol_philo(av[5]);
 	else
-		table->nbr_limit_meal = 0;
+		table->nbr_limit_meal = -1;
 }

@@ -6,7 +6,7 @@
 /*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:55:44 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/18 17:56:25 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:06:20 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	main(int ac, char **av)
 {
 	t_table table;
+	size_t		i;
 	
+	i = -1;
 	if (ac < 5 || ac > 6)
 		ft_exit(INPUT);
 	parsing(&table, av);
@@ -23,4 +25,7 @@ int	main(int ac, char **av)
 	mutexes_init(&table);
 	philos_init(&table);
 	thread_init(&table);
+	while (++i < table.nb_of_philos)
+		if (pthread_join(table.philos[i].thread, NULL))
+			ft_error(&table, JOIN);
 }

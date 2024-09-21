@@ -6,7 +6,7 @@
 /*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:56:08 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/18 18:16:41 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:08:30 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ typedef struct s_philo
 {
 	pthread_t	thread;
 	int			id;
-	long		nb_of_meals;
+	size_t		start_time;
+	size_t		nb_of_meals;
 	bool		full;
-	long		last_meal_time;
+	size_t		last_meal_time;
 
 	t_fork 		*left;
 	t_fork		*right;
@@ -57,12 +58,13 @@ typedef struct s_philo
 
 struct s_table
 {
-	long	nb_of_philos;
-	long	time_to_eat;
-	long	time_to_die;
-	long	time_to_sleep;
-	long	nbr_limit_meal;
-	long	start_time;
+	size_t	nb_of_philos;
+	size_t	time_to_eat;
+	size_t	time_to_die;
+	size_t	time_to_sleep;
+	size_t	nbr_limit_meal;
+	size_t	start_time;
+	bool	all_threads_ready;
 	bool	dead;
 	t_philo *philos;
 	t_fork	*forks;
