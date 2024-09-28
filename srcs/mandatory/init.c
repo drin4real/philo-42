@@ -6,23 +6,37 @@
 /*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:56:04 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/21 19:14:45 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:09:01 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
+
+void	destroy_mutexes(t_table *table)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < table->nb_of_philos)
+		pthread_mutex_destroy(&table->forks[i]);
+	i = -1;
+	while (++i < table->nb_of_philos)
+		pthread_mutex_destroy(&table->check_meals[i]);
+}
 
 void	mutexes_init(t_table *table)
 {
 	size_t	i;
 
 	i = -1;
-	table->forks = malloc(sizeof(t_fork) * table->nb_of_philos);
+	table->forks = malloc(sizeof(t_mtx) * table->nb_of_philos);
 	while (++i < table->nb_of_philos)
-	{
-		pthread_mutex_init(&table->forks[i].fork, NULL);
-		table->forks[i].fork_id = i;
-	}
+		pthread_mutex_init(&table->forks[i], NULL);
+	table->check_meals = malloc(sizeof(t_mtx) * table->nb_of_philos);
+	i = -1;
+	while (++i < table->nb_of_philos)
+		pthread_mutex_init(&table->check_meals[i], NULL);
+	pthread_mutex_init(&table->ready, NULL);
 }
 
 void	philos_init(t_table *table)
@@ -47,8 +61,9 @@ void	thread_init(t_table *table)
 
 	i = -1;
 	if (table->nbr_limit_meal == 0)
-		return (0);
+		return ;
 	table->dead = 0;
+	pthread_mutex_lock(&table->ready);
 	table->all_threads_ready = false;
 	while (++i < table->nb_of_philos)
 	{
@@ -59,4 +74,6 @@ void	thread_init(t_table *table)
 	}
 	table->start_time = get_current_time();
 	table->all_threads_ready = true;
+	pthread_mutex_unlock(&table->ready);
+	pthread_create(&table->checker, NULL, &routine_checker, table);
 }

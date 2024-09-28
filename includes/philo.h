@@ -6,7 +6,7 @@
 /*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:56:08 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/21 19:08:30 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:07:42 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,17 @@
 typedef pthread_mutex_t t_mtx;
 typedef struct s_table t_table;
 
-typedef struct s_fork
-{
-	t_mtx	fork;
-	int		fork_id;
-}	t_fork;
-
 typedef struct s_philo
 {
 	pthread_t	thread;
 	int			id;
-	size_t		start_time;
+	size_t		start;
 	size_t		nb_of_meals;
 	bool		full;
 	size_t		last_meal_time;
 
-	t_fork 		*left;
-	t_fork		*right;
+	t_mtx 		*left;
+	t_mtx		*right;
 	t_table		*table;
 }	t_philo;
 
@@ -66,8 +60,12 @@ struct s_table
 	size_t	start_time;
 	bool	all_threads_ready;
 	bool	dead;
+
+	pthread_t	checker;
+	t_mtx	ready;
+	t_mtx	*check_meals;
 	t_philo *philos;
-	t_fork	*forks;
+	t_mtx	*forks;
 };
 
 void	ft_exit(char *msg);
@@ -78,9 +76,11 @@ size_t	get_current_time(void);
 
 void	parsing(t_table *table, char **av);
 void	mutexes_init(t_table *table);
+void	destroy_mutexes(t_table *table);
 void	philos_init(t_table *table);
 void	thread_init(t_table *table);
 
 void	*routine_philo(void *arg);
+void	*routine_checker(void *arg);
 
 #endif

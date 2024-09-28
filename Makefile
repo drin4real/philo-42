@@ -9,7 +9,7 @@ OBJS 	= ${SRCS:.c=.o}
 
 NAME 	= philo
 CC 		= cc
-CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=thread
 RM 		= rm -rf
 INCLUDES = -Iincludes
 
