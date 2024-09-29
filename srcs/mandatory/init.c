@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbislimi <dbislimi@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:56:04 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/25 19:09:01 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:04:12 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ void	destroy_mutexes(t_table *table)
 	i = -1;
 	while (++i < table->nb_of_philos)
 		pthread_mutex_destroy(&table->forks[i]);
+	free(table->forks);
 	i = -1;
 	while (++i < table->nb_of_philos)
 		pthread_mutex_destroy(&table->check_meals[i]);
+	free(table->check_meals);
+	pthread_mutex_destroy(&table->check_dead);
+	pthread_mutex_destroy(&table->ready);	
 }
 
 void	mutexes_init(t_table *table)
@@ -37,6 +41,8 @@ void	mutexes_init(t_table *table)
 	while (++i < table->nb_of_philos)
 		pthread_mutex_init(&table->check_meals[i], NULL);
 	pthread_mutex_init(&table->ready, NULL);
+	pthread_mutex_init(&table->check_dead, NULL);
+
 }
 
 void	philos_init(t_table *table)

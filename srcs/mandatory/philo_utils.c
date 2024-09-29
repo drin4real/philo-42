@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbislimi <dbislimi@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:50:04 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/18 17:53:22 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:30:00 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_exit(char *msg)
 {
-	ft_printf(R"%s\n", msg);
+	printf("%s%s\n",R, msg);
 	exit(1);
 }
 

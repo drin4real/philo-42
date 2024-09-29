@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbislimi <dbislimi@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:55:44 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/25 15:09:30 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:44:22 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int	main(int ac, char **av)
 	while (++i < table.nb_of_philos)
 		if (pthread_join(table.philos[i].thread, NULL))
 			ft_error(&table, JOIN);
+	free(table.philos);
 	destroy_mutexes(&table);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbislimi <dbislimi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbislimi <dbislimi@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:56:08 by dbislimi          #+#    #+#             */
-/*   Updated: 2024/09/25 19:07:42 by dbislimi         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:25:50 by dbislimi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ struct s_table
 	pthread_t	checker;
 	t_mtx	ready;
 	t_mtx	*check_meals;
+	t_mtx	check_dead;
 	t_philo *philos;
 	t_mtx	*forks;
 };
