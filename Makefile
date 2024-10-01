@@ -3,7 +3,7 @@ LIBFT      	= $(LIBFT_PATH)/libft.a
 
 PHILO_PATH  = ./srcs/mandatory
 
-SRCS 	= ${addprefix ${PHILO_PATH}/, main.c parsing.c init.c philo_utils.c routine.c time.c}
+SRCS 	= ${addprefix ${PHILO_PATH}/, main.c parsing.c init.c philo_utils.c routine_philo.c routine_philo_utils.c routine_checker.c time.c}
 OBJS 	= ${SRCS:.c=.o}
 
 
